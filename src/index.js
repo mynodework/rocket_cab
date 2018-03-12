@@ -7,18 +7,15 @@ import bodyParser from "body-parser";
 import glob from "glob";
 import expressValidator from "express-validator";
 require('dotenv').config({path: `${__dirname}/process.env`})
+import db from "./db.js"
 
 const app = express();
 app.server = http.createServer(app);
 // logger
 app.use(cors());
 
-app.use(bodyParser.json({
-    limit: process.env.BODYLIMIT
-}));
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.json({limit: process.env.BODYLIMIT}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(expressValidator());
 
@@ -39,6 +36,8 @@ const initRoutes = (app) => {
 };
 
 initRoutes(app);
-app.server.listen(process.env.PORT);
+app
+    .server
+    .listen(process.env.PORT);
 console.log("Started on port " + app.server.address().port);
 export default app;

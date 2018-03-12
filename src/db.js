@@ -1,16 +1,49 @@
-import mysql from 'mysql';
+import Sequelize from "sequelize";
+// import migrations from './migrations'
+import models from "./models";
 
-let connection = mysql.createConnection({
-    host     : process.env.HOST,
-    user     : process.env.DB_USER,
-    password : process.env.DB_PASSWORD,
-    database : process.env.DATABASE
+const db = {};
+console.log(process.env.DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
+    port: 3306,
+    host: process.env.HOST,
+    dialect: 'mysql'
+})
+// const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER,
+// process.env.DB_PASSWORD, { port: 3306, host: process.env.HOST, dialect:
+// 'mysql', define : {     charset: 'utf8',     collate: 'utf8_general_ci' } });
+const sequelize = new Sequelize('rocketCabTest', 'root', 'java@123', {
+    port: 3306,
+    host: '127.0.0.1',
+    dialect: 'mysql',
+    define: {
+        charset: 'utf8',
+        collate: 'utf8_general_ci'
+    }
 });
 
-connection.connect(function(err) {
-    if (err) throw err;
-});
+// load models
+Object
+    .keys(models)
+    .forEach((modelName) => {
+        const model = models[modelName](sequelize, Sequelize.DataTypes, Sequelize);
+        db[modelName] = model;
+    }, (err) => {
+        console.log(err)
+    });
 
-export default {
-	connection
-};
+// invoke associations on each of the models
+Object
+    .keys(db)
+    .forEach((modelName) => {
+        if (db[modelName].associate) {
+            db[modelName].associate(db);
+        }
+    }, (err) => {
+        console.log(err)
+    });
+
+sequelize
+    .sync()
+    .then(() => {})
+
+export default Object.assign({}, db, {sequelize, Sequelize});

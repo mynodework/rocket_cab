@@ -1,7 +1,7 @@
 {
-  "name": "Rocket-Cab",
+  "name": "RocketCab",
   "version": "0.3.0",
-  "description": "Rocket Cad Node App",
+  "description": "Rocket Cab Node App",
   "main": "dist",
   "scripts": {
     "start": "node dist",
@@ -13,6 +13,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.13.3",
     "cors": "^2.7.1",
     "dev": "^0.1.3",
@@ -21,9 +22,11 @@
     "express": "^4.13.3",
     "express-validator": "^3.2.0",
     "https": "^1.0.0",
+    "mongoose": "^4.9.8",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.2",
     "nodemon": "^1.15.1",
+    "sequelize": "^4.33.4",
     "util": "^0.10.3"
   },
   "devDependencies": {
