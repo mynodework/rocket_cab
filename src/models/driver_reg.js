@@ -66,12 +66,9 @@ export default function(sequelize, DataTypes) {
     }, {
         indexes: [],
         freezeTableName: true,
-        timestamps: false,
-        hooks: {
-            beforeUpdate: function (driver) {
-                driver.cre_time = sequelize.fn('NOW');
-            }
-        }
+        timestamps: true,
+        updatedAt: 'cre_time',
+        createdAt: false
     })
 
     return driverReg;

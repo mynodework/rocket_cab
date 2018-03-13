@@ -3,23 +3,11 @@ import Sequelize from "sequelize";
 import models from "./models";
 
 const db = {};
-console.log(process.env.DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
-    port: 3306,
-    host: process.env.HOST,
-    dialect: 'mysql'
-})
-// const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER,
-// process.env.DB_PASSWORD, { port: 3306, host: process.env.HOST, dialect:
-// 'mysql', define : {     charset: 'utf8',     collate: 'utf8_general_ci' } });
-const sequelize = new Sequelize('rocketCabTest', 'root', 'java@123', {
-    port: 3306,
-    host: '127.0.0.1',
-    dialect: 'mysql',
-    define: {
-        charset: 'utf8',
-        collate: 'utf8_general_ci'
-    }
-});
+
+const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER,
+process.env.DB_PASSWORD, { port: 3306, host: process.env.HOST, dialect:
+'mysql', define : {     charset: 'utf8',     collate: 'utf8_general_ci' } });
+
 
 // load models
 Object

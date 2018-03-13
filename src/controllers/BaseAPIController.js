@@ -3,7 +3,7 @@ import db from '../db';
 
 export default class BaseAPIController {
 	constructor() {
-		this._db = db.connection;
+		this._db = db;
 	}
     handleErrorResponse(res, err, next) {
         res.status(400).send(errorHandler(err));

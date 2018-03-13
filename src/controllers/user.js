@@ -13,10 +13,10 @@ export class UserController extends BaseAPIController {
     }
 
     getAllUser = (req, res, next) => {
-    	this._db.query('SELECT * from user', function (err, rows, fields) {
-		  if (err) throw err
+    	this._db.cab.findAll({}).then((data)=>{
+		  // if (err) throw err
 
-		  console.log('The solution is: ', rows)
+		  console.log('The solution is: ', data)
 		})
     }
 }

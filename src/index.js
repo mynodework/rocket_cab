@@ -7,8 +7,7 @@ import bodyParser from "body-parser";
 import glob from "glob";
 import expressValidator from "express-validator";
 require('dotenv').config({path: `${__dirname}/process.env`})
-import db from "./db.js"
-
+console.log(process.env)
 const app = express();
 app.server = http.createServer(app);
 // logger
