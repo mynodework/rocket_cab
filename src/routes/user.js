@@ -1,10 +1,13 @@
 import user from "../controllers/user";
 export default (app) => {
 
-    /* Routes for add user */
+    /* Routes for user */
 
-    app.route("/user/addUser").post(user.addUser);
-    app.route("/user/getAllUser").get(user.getAllUser);
+    app.route("/user/register").post(user.register);
+
+    app.route("/user/login").post(user.login);
+
+    app.route("/user/verifyOTP").post(user.verifyOTP);
 
     return app;
 };

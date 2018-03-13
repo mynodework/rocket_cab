@@ -17,31 +17,31 @@ export default function(sequelize, DataTypes) {
         },
         OTPS: {
             type: DataTypes.INTEGER(5),
-            allowNull: false
+            allowNull: true
         },
         name: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         email: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         password: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         mail_verification: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         mail_statsus: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         user_pic: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         }
     }, {
         indexes: [],

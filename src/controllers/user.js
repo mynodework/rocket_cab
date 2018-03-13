@@ -4,20 +4,44 @@ import _ from "lodash";
 
 export class UserController extends BaseAPIController {
 
-    addUser = (req, res, next) => {
-        userProvider.provideUser(req.checkBody, req.body, req.getValidationResult()).then((body) => {
-                // db.user.create(body).then((response) => {
-                //     res.json({ data: response, status: 1 })
-                // }, (err) => this.handleErrorResponse(res, err))
+    register = (req, res, next) => {
+        userProvider.userRegistration(req.checkBody, req.body, req.getValidationResult()).then((body) => {
+            var val = Math.floor(1000 + Math.random() * 9000);
+            body['OTPS'] = val;
+            this._db.userRegistration.create(body).then((response) => {
+                    res.json({ data: response, status: 1, message: 'success' })
+                }, (err) => this.handleErrorResponse(res, err))
         }, (err) => this.handleErrorResponse(res, err))
     }
 
-    getAllUser = (req, res, next) => {
-    	this._db.cab.findAll({}).then((data)=>{
-		  // if (err) throw err
-
-		  console.log('The solution is: ', data)
-		})
+    login = (req, res, next) => {
+        this._db.userRegistration.findOne({ where: { phone: req.body.phone } }).then((response) => {
+            if(response) {
+                res.json({ data: response, status: 1, message: 'success' })
+            } else {
+                this.handleErrorResponse(res, 'not found')
+            }
+        }, (err) => this.handleErrorResponse(res, err))
+    }
+    
+    sendSMS = (req, res, next) => {
+        // userProvider.userRegistration(req.checkBody, req.body, req.getValidationResult()).then((body) => {
+        //     var val = Math.floor(1000 + Math.random() * 9000);
+        //     body['OTPS'] = val;
+        //     this._db.userRegistration.create(body).then((response) => {
+        //             res.json({ data: response, status: 1 })
+        //         }, (err) => this.handleErrorResponse(res, err))
+        // }, (err) => this.handleErrorResponse(res, err))
+    }
+    
+    verifyOTP = (req, res, next) => {
+        this._db.userRegistration.findOne({ where: { phone: req.body.phone, OTPS: req.body.otp } }).then((response) => {
+            if(response) {
+                res.json({ data: response, status: 1, message: 'success' })
+            } else {
+                this.handleErrorResponse(res, 'not found')
+            }
+        }, (err) => this.handleErrorResponse(res, err))
     }
 }
 
