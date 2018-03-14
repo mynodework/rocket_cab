@@ -47,7 +47,23 @@ export default function(sequelize, DataTypes) {
         indexes: [],
         freezeTableName: true,
         timestamps: false,
-        hooks: {}
+        hooks: {
+            beforeCreate: function(body) {
+                return new Promise((resolve, reject) => {
+                    this.findOne({
+                        where: {
+                            phone: body.phone
+                        }
+                    }).then((user) => {
+                        if (user) {
+                            reject("phone number already exist");
+                        } else {
+                            resolve()
+                        }
+                    })
+                })
+            }
+        }
     })
 
     return userRegistration;
