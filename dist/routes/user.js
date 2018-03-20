@@ -18,7 +18,7 @@ exports.default = function (app) {
 
     app.route("/user/login").post(_user2.default.login);
 
-    app.route("/user/verifyOTP").post(_user2.default.verifyOTP);
+    app.route("/user/verifyOTP").put(_user2.default.verifyOTP);
 
     return app;
 };

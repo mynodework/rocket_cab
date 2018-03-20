@@ -48,9 +48,8 @@ var UserController = exports.UserController = function (_BaseAPIController) {
                 var val = Math.floor(1000 + Math.random() * 9000);
                 body['OTPS'] = val;
                 _sendSMS2.default.send(body.phone, body.OTPS).then(function (smsResponse) {
-                    console.log(body);
                     _this._db.userRegistration.create(body).then(function (response) {
-                        res.json({ data: response, status: 1, message: 'success' });
+                        res.json({ data: { id: response.id }, status: 1, message: 'success' });
                     }, function (err) {
                         return _this.handleErrorResponse(res, err);
                     });
@@ -71,10 +70,9 @@ var UserController = exports.UserController = function (_BaseAPIController) {
                 return _this.handleErrorResponse(res, err);
             });
         }, _this.verifyOTP = function (req, res, next) {
-            console.log(req.body);
             _this._db.userRegistration.findOne({ where: { id: req.body.id, OTPS: req.body.otp } }).then(function (response) {
                 if (response) {
-                    res.json({ data: response, status: 1, message: 'success' });
+                    res.json({ status: 1, message: 'success' });
                 } else {
                     _this.handleErrorResponse(res, 'not found');
                 }

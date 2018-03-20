@@ -28,10 +28,8 @@ var driverRegistration = function driverRegistration(validate, body, validationR
         validate("profile_pic", "profile pic  Required field!!").notEmpty();
         validate("city", "city Required field!!").notEmpty();
         validate("dob", "dob Required field!!").notEmpty();
-        validate("otp", "otp Required field!!").notEmpty();
         validate("driving_lincense_number", "driving lincense number Required field!!").notEmpty();
         validate("working", "working Required field!!").notEmpty();
-        validate("token", "token Required field!!").notEmpty();
         validationResult.then(function (result) {
             if (!result.isEmpty()) {
                 reject(result.array()[0].msg);

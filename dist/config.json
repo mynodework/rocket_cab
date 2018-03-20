@@ -1,0 +1,12 @@
+{
+    "port": 8091,
+    "bodyLimit": "100kb",
+    "corsHeaders": ["Link"],
+    "db":
+    {
+        "host": "127.0.0.1",
+        "name": "user_profile_test",
+        "password": "java@123",
+        "username": "root"
+    }
+}

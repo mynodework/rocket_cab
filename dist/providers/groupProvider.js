@@ -20,9 +20,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var userRegistration = function userRegistration(validate, body, validationResult) {
+var provideGroup = function provideGroup(validate, body, validationResult) {
     return new Promise(function (resolve, reject) {
-        validate("phone", "phone Required field!!").notEmpty();
+        validate("groupName", " groupName Required field!!").notEmpty();
         validationResult.then(function (result) {
             if (!result.isEmpty()) {
                 reject(result.array()[0].msg);
@@ -32,9 +32,8 @@ var userRegistration = function userRegistration(validate, body, validationResul
         });
     });
 };
-
 exports.default = {
     BaseProvider: BaseProvider,
-    userRegistration: userRegistration
+    provideGroup: provideGroup
 };
-//# sourceMappingURL=userProvider.js.map
+//# sourceMappingURL=groupProvider.js.map

@@ -45,10 +45,6 @@ var DriverController = exports.DriverController = function (_BaseAPIController) 
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DriverController.__proto__ || Object.getPrototypeOf(DriverController)).call.apply(_ref, [this].concat(args))), _this), _this.register = function (req, res, next) {
             _driverProvider2.default.driverRegistration(req.checkBody, req.body, req.getValidationResult()).then(function (body) {
-                console.log("body***************", body);
-                // var val = Math.floor(1000 + Math.random() * 9000);
-                // body['OTPS'] = val;
-                // sendSMS.send(body.phone, body.OTPS).then((smsResponse) => {
                 _this._db.driverReg.create(body).then(function (response) {
                     res.json({ data: response, status: 1, message: 'success' });
                 }, function (err) {
@@ -57,7 +53,6 @@ var DriverController = exports.DriverController = function (_BaseAPIController) 
             }, function (err) {
                 _this.handleErrorResponse(res, err);
             });
-            // }, (err) => this.handleErrorResponse(res, err))
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 

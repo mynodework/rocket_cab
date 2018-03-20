@@ -26,19 +26,19 @@ exports.default = function (sequelize, DataTypes) {
         },
         profile_pic: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         city: {
             type: DataTypes.STRING(100),
-            allowNull: false
+            allowNull: true
         },
         dob: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         otp: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         cre_time: {
             type: DataTypes.DATE,
@@ -46,7 +46,7 @@ exports.default = function (sequelize, DataTypes) {
         },
         driving_lincense_number: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         expiry_date: {
             type: DataTypes.DATEONLY,
@@ -58,7 +58,7 @@ exports.default = function (sequelize, DataTypes) {
         },
         token: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         active: {
             type: DataTypes.STRING(100),

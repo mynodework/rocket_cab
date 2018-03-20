@@ -5,8 +5,7 @@ import models from "./models";
 const db = {};
 
 const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER,
-process.env.DB_PASSWORD, { port: 3306, host: process.env.HOST, dialect:
-'mysql',logging:false });
+process.env.DB_PASSWORD, { port: 3306, host: process.env.HOST, dialect:'mysql',logging:false });
 
 
 // load models
